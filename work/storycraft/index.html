@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- normalize css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" href="../../styles.css">
+
+    <title>:: storycraft ::</title>
+</head>
+<body>
+    <header>
+        <h1><a href="../../">Jess L McPeak</a></h1>
+        
+        <nav>
+            <ul>
+                <li><a href="../">Work</a></li>
+                <li><a href="../bio/">Bio</a></li>
+                <li><a href="../contact/">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>:: storycraft ::</h1>
+
+    <h2>Prologue :: Inspiration</h2>
+    <p>The idea for storycraft was Etienne's. He worked with a similar idea at a previous hackathon, but was unsatisfied with the end result. For him, this project was an opportunity to reflect and do better.</p>
+    <p>When the rest of us heard the idea of an ai-powered narrative adventure, we were all intrigued by its inherent whimsy. The references of choose-your-own-adventure books, dnd, and imaginative play inspired joy in all of us and led us to pursue the project.</p>
+    <p>As we worked on the project, however, we began to envision it as more than just a diversion. Imaginative play itself serves an important purpose in the development of metacognition and social skills in children, but we also saw this as an opportunity to encourage kids to joyfully practice their reading and creative writing skills, and hopefully spark a lifelong passion for literature and language.</p>
+
+    <h2>Chapter 1 :: What storycraft does</h2>
+    <p>Storycraft has two main audiences, children in early to middle childhood, and their parents, who have control over content, reading level, and input methods to adjust the experience to their child's needs. Storycraft also provides an opportunity for parent-child bonding through collaborative narrative experience and creation.</p>
+    <p>Users can create characters, place them into stories, and reuse them across multiple stories. Within each story, users interact scene-by-scene with an AI narrator who weaves a tale based on the users' choices (imputed either as multiple choice or freeform text). The text narration is accompanied with AI generated artwork based on the scenes. Together, the experience resembles a vivid, uniquely-personalized storybook.</p>
+    <p>In addition to this experience, we envision that storycraft will allow users to go back to previous scenes and make different decisions, leading to branching narrative trees that the user can hop around as they freely play in their imagination.</p>
+
+    <h2>Chapter 2 :: How we built it</h2>
+    <p>We started by working out basic features and general structure on paper, then transferring to Figma to solidify page layouts and visual language. We took inspiration from the interplay of word and image found in children's storybooks and tarot cards, to try to capture the sense of wonder that surrounds these artifacts.</p>
+    <p>We then moved on to creating a static frontend that matched the figma prototype as closely as we could, using Next.js and Typescript.</p>
+    <p>We followed that up by building out the backend. We focused on integrating a Neurelo database and designing database schema, formatting our data so we could more easily use it. Neurelo acted as a middle man between us and MongoDB, which hosted our actual database.</p>
+    <p>We also developed integrations with Fireworks.ai using Mixtral for our text and Stable Diffusion for our images. We used AWS S3 buckets to house the images.</p>
+    <p>We most recently integrated the backend elements into the frontend to create a functioning prototype.</p>
+
+    <h2>Chapter 3 :: Challenges we ran into</h2>
+    <p>A key design feature of our page layouts was having the images fade into the page, visually interacting with the text, taking inspiration from the integration of word and image found in children's story books. Achieving this effect proved challenging during the initial front end development, and we had to take time researching a novel new approach.</p>
+    <p>However, our backend was where we had the most struggles. Firstly, Neurelo is a new platform that none of us had any experience with. Some of the docs and UI were confusing, and we got a lot of help from the representative (thanks, George!). Also, storing images in S3 buckets required setup and experimentation.</p>
+    <p>Our biggest struggles were with the ai integration. Like Neurelo, none of us had used Fireworks.ai before, so we were learning as we went (thanks Ray for all the help!). We ran into a bug in the product where there were no code snippets for image generation, which made it more difficult to learn. Also learning how to prompt engineer was challenging and took a lot of time.</p>
+
+    <h2>Chapter 4 :: Accomplishments we're proud of</h2>
+    <p>We are proud of having built as much of our project as we did within the time frame, and trying our best not to compromise too much on our vision. With this iteration, we are much closer to Etienne's original concept from the previous hackathon.</p>
+    <p>We are proud of the design of the project. We were able to create a simple, typography-heavy design system, relying on textural effects more than color, so that the unique content of each character and story draws the most attention. We managed to have words and images interact while still remaining legible.</p>
+    <p>We are also proud of how we dove in and learned whole new platforms from scratch with Neurelo and Fireworks.ai. We were able to develop enough proficiency in them to actually build something, but more importantly, we challenged ourselves to learn and gained greater confidence in our abilities to navigate when we are confused.</p>
+    <p>On a more personal level, we are also proud of how we put ourselves out there and interacted with the sponsor representatives, mentors, and fellow hackers, and developed a sense of community at SF Hacks.</p>
+
+    <h2>Chapter 5 :: What we've learned</h2>
+    <p>Etienne, David, and Tanvi learned about the importance of visual and interactive design in creating an identity for a project, and ultimately in convincing people that it's viable, feasible, and desirable. Jess learned about how there is no connection between an element's difficulty to design or importance to an overall design and its difficulty to develop. She also got experience in communicating with developers about feasibility and adapting designs to fit project constraints.</p>
+    <p>Everyone learned about how facing imposter syndrome, discomfort, and confusion, and committing to working on a project despite them, will lead to a great amount of discovery and learning, and can lead to us achieving things that we didn't know we could do.</p>
+
+    <h2>Epilogue :: What's next for storycraft</h2>
+    <p>We've already identified some next steps to bring storycraft even closer to our vision:</p>
+    <ul>
+        <li><p>Designing animations and micro-interactions to make the project feel alive and magical.</p></li>
+        <li><p>Developing those designs.</p></li>
+        <li><p>Adding accounts so that users can save their characters and stories over time.</p></li>
+        <li><p>Developing a feature where users can hover over a word in a story and see its definition, to clear confusion and encourage vocabulary acquisition.</p></li>
+        <li><p>Developing the backtracking and branching narrative feature, so that users have even more control over their stories.</p></li>
+    </ul> 
+</body>
+</html>
