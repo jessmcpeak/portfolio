@@ -56,56 +56,154 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- TYPOGRAPHY ---------- */
 
 h1, h2, h3, h4, h5, h6, h1 a {
-    font-family: 'Libre Baskerville';
-    font-weight: 400;
+  font-family: 'Libre Baskerville';
+  font-weight: 400;
 }
 
 h1, h1 a {
-    font-size: 40px;
-    text-align: center;
+  font-size: 40px;
 }
 
 h2 {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 h3 {
-    font-size: 20px;
+  font-size: 20px;
+}
+
+header p {
+  line-height: 1em;
 }
 
 p, a, ul, ol {
-    font-family: 'Work Sans';
-    font-size: 20px;
+  font-family: 'Work Sans';
+  font-size: 20px;
 }
 
 a {
-    text-decoration: none;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a p {
+  font-weight: 400;
 }
 
 nav ul {
-    padding-left: 0;
-    list-style-type: none;
+  padding-left: 0;
+  list-style-type: none;
 }
 
 /* ---------- LAYOUT ---------- */
 
 body {
-    margin: auto;
-    max-width: 800px;
+  margin: auto;
+  padding: 0 5vw;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 2em;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+h1 {
+  margin: 0;
+}
+
+#selected-work {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 2em;
+  row-gap: 2em;
+}
+
+#selected-work a {
+  flex: 0 1 482px;
+}
+
+#selected-work a:last-of-type {
+  justify-self: flex-start;
+}
+
+/* ---------- COLORS ---------- */
+
+header a {
+  text-shadow: 0 0 0.05em hsla(270, 100%, 50%, 1);
+  transition: all 0.25s ease-in-out;
+}
+
+header a:hover {
+  text-shadow: none;
+}
+
+a {
+  color: hsla(270, 100%, 50%, 1);
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
+  position: relative;
 }
 
-main {
-    background-color: aqua;
+footer div {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+
+  /* background-image: radial-gradient(hsla(270, 100%, 50%, 1), hsla(270, 100%, 100%, 0));
+  box-shadow: 0 0 50px 0 hsla(270, 100%, 50%, 1), inset 0 0 50px 0 hsla(270, 100%, 100%, 1); */
+
+  /* background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: 0 0 10px 0 hsla(270, 100%, 50%, 1), inset 0 0 10px 0 hsla(270, 100%, 50%, 1); */
+
+  /* background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: 0 0 10px 0 hsla(270, 100%, 50%, 1); */
+
+  background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: inset 0 0 10px 0 hsla(270, 100%, 50%, 1);
+}
+
+#default {
+  background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: 0 0 10px 0 hsla(270, 100%, 50%, 1), inset 0 0 10px 0 hsla(270, 100%, 50%, 1);
+}
+
+#hover {
+  background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: 0 0 10px 0 hsla(270, 100%, 50%, 1);
+}
+
+#active {
+  background-image: radial-gradient(hsla(270, 100%, 50%, 1) 0%, hsla(270, 100%, 100%, 1) 66%);
+  box-shadow: inset 0 0 10px 0 hsla(270, 100%, 50%, 1);
+}
+
+#selected-work img {
+  margin: 2em 0;
+  position: relative;
+  transition: all 0.25s ease-in-out;
+}
+
+#selected-work a {
+  display: block;
+  padding: 3em 2em 2em 2em;
+  color: black;
+  box-shadow: 0 0 0.5em 0 hsla(270, 100%, 50%, 0.5), inset 0 0 0.5em 0 hsla(270, 100%, 50%, 0.5);
+  border-radius: 1em;
+  transition: all 0.25s ease-in-out;
+  background-image: radial-gradient(hsla(270, 100%, 50%, 0.5) 0%, hsla(270, 100%, 100%, 0) 66%);
+}
+
+#selected-work a:hover {
+  box-shadow: 0 0 0.5em 0 hsla(270, 100%, 50%, 1);
+  img {
+    transform: scale(101%);
+  }
+}
+
+@media screen and (width>800px) {
+
 }
