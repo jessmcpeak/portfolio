@@ -53,6 +53,8 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
+ /* --- End CSS Reset --- */
+
 /* Variable Declarations */
 :root {
   /* Colors */
@@ -62,5 +64,56 @@ h1, h2, h3, h4, h5, h6 {
   --white: #ffffff;
 
   /* Typography */
-  
+  font-family: "Space Grotesk";
+  font-weight: 400;
+  color: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fraunces";
+  font-weight: 100;
+  color: var(--periwinkle);
+}
+
+body {
+  background-color: var(--black);
+  padding: 1rem;
+}
+
+nav ul {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: center;
+  gap: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--periwinkle);
+}
+
+#hero {
+  color: var(--indigo)
+}
+
+.button {
+  display: block;
+  border: 1px solid var(--indigo);
+  border-radius: 100vw;
+  padding: 0.5rem 1rem;
+  background-color: var(--black);
+  font-weight: 700;
+  text-align: center;
+  justify-self: center;
+}
+
+.button:hover {
+  background-color: var(--indigo);
+  color: var(--black);
+}
+
+.inline {
+  display: inline;
 }
