@@ -67,12 +67,28 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Space Grotesk";
   font-weight: 400;
   color: var(--white);
+
+  /* rem */
+  font-size: 112.5%;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Fraunces";
   font-weight: 100;
+  line-height: 100%;
   color: var(--periwinkle);
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
 }
 
 body {
@@ -107,6 +123,7 @@ a {
   font-weight: 700;
   text-align: center;
   justify-self: center;
+  line-height: 100%;
 }
 
 .button:hover {
@@ -116,4 +133,17 @@ a {
 
 .inline {
   display: inline;
+}
+
+p {
+  line-height: 200%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
+body {
+  margin: auto;
 }
