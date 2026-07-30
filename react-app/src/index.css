@@ -1,0 +1,437 @@
+/* ============================================================
+   GLOBAL STYLES
+   This file is the single source of truth for all visual design.
+   It's imported once in main.jsx and applies to the whole app.
+   ============================================================ */
+
+/* --- Josh Comeau's Modern CSS Reset ---
+   A reset removes inconsistent default styles that browsers apply
+   on their own, giving us a clean, predictable starting point. */
+
+*, *::before, *::after {
+  box-sizing: border-box; /* padding and border count inside element width */
+}
+
+*:not(dialog) {
+  margin: 0; /* remove all default margins */
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* crisper text on Mac/iOS */
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%; /* images never overflow their container */
+}
+
+input, button, textarea, select {
+  font: inherit; /* form controls inherit the page font */
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p  { text-wrap: pretty; }  /* nicer paragraph line-breaking */
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; } /* prevent orphans in headings */
+
+/* --- End CSS Reset --- */
+
+
+/* ============================================================
+   DESIGN TOKENS  (CSS Custom Properties)
+   Custom properties (--name) work like variables: change one
+   value here and every element that uses it updates too.
+   ============================================================ */
+:root {
+  /* Brand colors */
+  --black:      #000000;
+  --indigo:     #5500FF;
+  --periwinkle: #8A8AFF;
+  --white:      #ffffff;
+
+  /* Base type settings. 112.5% of the browser default 16px = 18px,
+     so 1rem = 18px throughout the site. */
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  color: var(--white);
+  font-size: 112.5%;
+}
+
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+/* All headings use Fraunces — a high-contrast "optical" serif —
+   in ultra-light (100) for a refined, editorial look. */
+h1, h2, h3, h4 {
+  font-family: "Fraunces", serif;
+  font-weight: 100;
+  line-height: 1.05;
+  color: var(--periwinkle);
+}
+
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.1rem; font-weight: 400; }
+
+p { line-height: 2; }
+
+strong { font-weight: 700; }
+
+/* Default link: no underline, periwinkle, subtle hover */
+a {
+  text-decoration: none;
+  color: var(--periwinkle);
+  transition: color 0.15s ease;
+}
+a:hover { color: var(--white); }
+
+
+/* ============================================================
+   BASE LAYOUT
+   ============================================================ */
+
+body { background-color: var(--black); }
+
+/* .page-wrapper is the outermost container on every page.
+   It caps content width and adds side padding. */
+.page-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+@media (min-width: 900px) {
+  .page-wrapper { padding: 1.5rem 3.5rem; }
+}
+
+
+/* ============================================================
+   BUTTON / PILL STYLE
+   Used for nav links AND "Read More" CTAs.
+   ============================================================ */
+
+.btn {
+  display: inline-block;
+  border: 1.5px solid var(--indigo);
+  border-radius: 100vw;          /* 100vw → radius always > half-height → perfect pill */
+  padding: 0.45rem 1rem;
+  background-color: var(--black);
+  color: var(--periwinkle);
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  background-color: var(--indigo);
+  color: var(--black);
+}
+
+/* Current-page button: filled solid */
+.btn--active {
+  background-color: var(--indigo);
+  color: var(--black);
+}
+
+/* Slightly larger CTA variant (Read More →) */
+.btn--cta {
+  font-size: 0.95rem;
+  padding: 0.6rem 1.3rem;
+}
+
+
+/* ============================================================
+   SITE HEADER  (used on every page except Home)
+   Flex row: name left | nav right.
+   ============================================================ */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+/* The clickable name / logo */
+.site-header__name {
+  font-family: "Fraunces", serif;
+  font-weight: 100;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--indigo);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* Nav links as a horizontal flex list */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+
+/* ============================================================
+   HOME PAGE HERO HEADER
+   The home page shows the name as a huge display element with
+   the nav sitting underneath it.
+   ============================================================ */
+
+.home-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+
+/* clamp(min, preferred-vw, max) — scales between min and max
+   relative to viewport width, so the name fills big screens. */
+.home-header__name {
+  font-family: "Fraunces", serif;
+  font-weight: 100;
+  font-size: clamp(3.5rem, 11vw, 12rem);
+  line-height: 0.95;
+  color: var(--indigo);
+  text-decoration: none;
+  display: block;
+}
+
+
+/* ============================================================
+   WORK INDEX — PROJECT CARDS
+   Alternating side-by-side image + text cards.
+   ============================================================ */
+
+.work-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding-top: 1rem;
+}
+
+/* Two-column grid: image | text */
+.project-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Placeholder / image area */
+.project-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #3a3a3a; /* grey placeholder for images not yet supplied */
+  display: block;
+}
+
+/* When reversed, visually flip columns using CSS order.
+   The HTML order stays the same (good for accessibility / tab order). */
+.project-card--reversed {
+  grid-template-columns: 1fr 1.1fr;
+}
+.project-card--reversed .project-card__img   { order: 2; }
+.project-card--reversed .project-card__content { order: 1; }
+
+.project-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.project-card__content h2 { font-size: 1.75rem; }
+
+/* Mobile: single column, image always on top */
+@media (max-width: 680px) {
+  .project-card,
+  .project-card--reversed {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .project-card__img,
+  .project-card--reversed .project-card__img   { order: 0; }
+  .project-card__content,
+  .project-card--reversed .project-card__content { order: 1; }
+}
+
+
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 3rem;
+  align-items: start;
+  padding-top: 2rem;
+}
+
+.about-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background-color: #3a3a3a;
+  display: block;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+@media (max-width: 680px) {
+  .about-layout { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   CASE STUDY PAGES
+   ============================================================ */
+
+/* Full-width banner at the top of a case study */
+.case-study-hero {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  background-color: #3a3a3a;
+  margin-bottom: 3rem;
+}
+
+/* Intro block: small thumbnail + title/meta side by side */
+.case-study-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.75fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+.case-study-intro__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #3a3a3a;
+  display: block;
+}
+
+.case-study-intro__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.case-study-intro__meta p { line-height: 1.7; }
+
+/* A content section: heading on the left, body on the right.
+   This editorial two-column layout makes headings feel like labels. */
+.case-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid #1c1c1c;
+}
+
+.case-section__heading { font-size: 1.25rem; padding-top: 0.15rem; }
+
+.case-section__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* h4 sub-headings inside a section */
+.case-section__body h4 { color: var(--periwinkle); margin-top: 0.5rem; }
+
+/* Image within a section body */
+.case-section__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #3a3a3a;
+  margin-top: 1.5rem;
+  display: block;
+}
+
+/* Bullet lists inside case sections */
+.case-section__body ul {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.case-section__body li { line-height: 1.9; }
+
+/* Inline links inside body copy */
+.case-section__body a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Cross-reference pill link (e.g. "Read the SBCFSC case study →") */
+.case-xref {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 680px) {
+  .case-study-intro { grid-template-columns: 1fr; }
+  .case-section { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
+
+.contact-layout {
+  padding-top: 2rem;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contact-layout a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* ============================================================
+   RESUME / CV PAGE
+   ============================================================ */
+
+.resume-layout {
+  padding-top: 2rem;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.resume-layout a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
